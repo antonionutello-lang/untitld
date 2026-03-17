@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Songs Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="moreBtn">
+        <img src="assets/more-button.png" alt="More" />
+    </button>
+    <div id="more" style="display: none;">
+        <h3>More</h3>
+        <h3>Concept</h3>
+        <p>This is a business concept I originally created for an academic exam. I found the idea interesting and thought it might deserve a bit more than just a grade.</p>
+        <p>The concept is a live streaming, similar to a radio broadcast, focused on underground music and conversations about culture and everyday topics.</p>
+        <p>Feel free to skip a song if you don't like it, but please try to listen to a few tracks before answering the questions. Your feedback will really help me understand whether this idea could work in the real world.</p>
+        <p><a href="assets/concept.pdf" target="_blank" rel="noopener noreferrer">Read the full concept (PDF)</a></p>
+        <h4>Playlist</h4>
+        <p>Here you can add tracks to help grow and enrich this project :)</p>
+        <p>
+            <a href="https://open.spotify.com/playlist/4ZLXqDCVGIvkcHAgK3wiPi?si=4bf9cae587b347bf&pt=d887fe68675138166e58283f1116a2f2" target="_blank" rel="noopener noreferrer">
+                Spotify Playlist
+            </a>
+        </p>
+        <h4>Social</h4>
+        <p>
+            <a href="https://www.instagram.com/antonio_nutello?igsh=MWZkODVpNGc5cGVydA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
+                instagram: antonio_nutello
+            </a>
+        </p>
+        <p>
+            <a href="https://www.instagram.com/hannn_archive_?igsh=cWoxanF5NWE5N2t5&utm_source=qr" target="_blank" rel="noopener noreferrer">
+                instagram: hannn_archive_
+            </a>
+        </p>
+        <h4>Contact</h4>
+        <p><a href="mailto:antonio.nutello@gmail.com">e-mail: antonio.nutello@gmail.com</a></p>
+    </div>
+    <div id="titleWrapper">
+        <img id="titleImg" src="assets/title.png" alt="Title" />
+        <div id="titleFallback">Random Songs Player</div>
+    </div>
+    <p id="subtitle">This is an experiment</p>
+    <div id="player">
+        <p>Click play to start 5 random songs.</p>
+        <button id="playButton">
+            <img src="assets/play-button.png" alt="Play" />
+        </button>
+        <audio id="audioPlayer" controls></audio>
+        <button id="skipBtn" style="display: none;">
+            <img src="assets/skip-button.png" alt="Skip Song" />
+        </button>
+        <p id="currentSong"></p>
+    </div>
+    <button id="toggleGameBtn">minigame</button>
+
+    <div id="gameWrapper" style="display: none;">
+        <p id="gameHint">Press <strong>Space</strong> or <strong>↑</strong> to jump</p>
+        <canvas id="gameCanvas" width="500" height="120"></canvas>
+        <p id="gameScore">Score: 0</p>
+    </div>
+
+    <div id="questionnaire" style="display: none;">
+        <h2>Questionnaire</h2>
+        <form id="quizForm" method="POST" action="https://formspree.io/f/xpqyojby">
+            <label>How old are you?</label><br>
+            <select id="age" name="age">
+                <option value="">Select</option>
+                <option value="14-19">14-19</option>
+                <option value="20-25">20-25</option>
+                <option value="25+">25+</option>
+            </select><br><br>
+            <label>Where are you from?</label><br>
+            <select id="location" name="location">
+                <option value="">Select</option>
+                <option value="Italy">Italy</option>
+                <option value="Other">Other</option>
+            </select><br>
+            <input type="text" id="locationOther" name="locationOther" placeholder="Please specify your country" style="display: none; width: 100%; margin-top: 5px; padding: 8px;"><br><br>
+            <label>Which song was your favorite?</label><br>
+            <select id="favorite" name="favorite">
+                <option value="">Select</option>
+            </select><br><br>
+            <label>How would you rate the playlist? (1-5)</label><br>
+            <select id="rating" name="rating">
+                <option value="">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select><br><br>
+            <label>What made this track stand out to you?</label><br>
+            <textarea id="songThoughts" name="songThoughts"></textarea><br><br>
+            <label>Would you listen to a mix simailar to this?</label><br>
+            <select id="similarMix" name="similarMix">
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="Maybe">Maybe</option>
+                <option value="No">No</option>
+            </select><br><br>
+            <label>Would you listen to a live show that features music and general topics (such as fashion, cinema, sports, etc.)?</label><br>
+            <select id="liveShow" name="liveShow">
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="Maybe">Maybe</option>
+                <option value="No">No</option>
+            </select><br><br>
+            <label>Would you like to conect with people with similar tastes as yours?</label><br>
+            <select id="connectPeople" name="connectPeople">
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="Maybe">Maybe</option>
+                <option value="No">No</option>
+            </select><br><br>
+            <label>Any comments?</label><br>
+            <textarea id="comments" name="comments"></textarea><br><br>
+            <button id="submitBtn" type="submit">
+                <img src="assets/submit-button.png" alt="Submit" />
+            </button>
+            <p id="formStatus" style="display: none; margin-top: 10px; color: #1f7a1f;">Thanks, your response was sent.</p>
+        </form>
+    </div>
+    <script src="script.js"></script>
+    <script>
+    (function() {
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('gameScore');
+        const hintEl = document.getElementById('gameHint');
+        const playerSprite = new Image();
+
+        playerSprite.src = 'assets/cartman.png';
+
+        const GROUND = canvas.height - 20;
+        const GRAVITY = 0.6;
+        const JUMP_FORCE = -12;
+
+        let player, obstacles, score, speed, frameCount, gameOver, started, animId;
+
+        function init() {
+            player = { x: 50, y: GROUND - 48, w: 38, h: 48, vy: 0, onGround: true };
+            obstacles = [];
+            score = 0;
+            speed = 4;
+            frameCount = 0;
+            gameOver = false;
+            started = false;
+            scoreEl.textContent = 'Score: 0';
+            hintEl.style.display = 'block';
+            if (animId) cancelAnimationFrame(animId);
+            drawIdle();
+        }
+
+        function drawBackground() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function drawPlayer() {
+            if (playerSprite.complete && playerSprite.naturalWidth > 0) {
+                ctx.drawImage(playerSprite, player.x, player.y, player.w, player.h);
+            } else {
+                ctx.fillStyle = '#333';
+                ctx.fillRect(player.x, player.y, player.w, player.h);
+            }
+        }
+
+        function drawIdle() {
+            drawBackground();
+            ctx.fillStyle = '#222';
+            ctx.fillRect(0, GROUND, canvas.width, 2);
+            drawPlayer();
+        }
+
+        function jump() {
+            if (!started) {
+                started = true;
+                hintEl.style.display = 'none';
+                loop();
+                return;
+            }
+            if (gameOver) {
+                init();
+                return;
+            }
+            if (player.onGround) {
+                player.vy = JUMP_FORCE;
+                player.onGround = false;
+            }
+        }
+
+        function spawnObstacle() {
+            const h = 20 + Math.random() * 25;
+            obstacles.push({ x: canvas.width, y: GROUND - h, w: 14, h: h });
+        }
+
+        function loop() {
+            if (gameOver) return;
+            animId = requestAnimationFrame(loop);
+            frameCount++;
+            score++;
+            speed = 4 + Math.floor(score / 300) * 0.5;
+            scoreEl.textContent = 'Score: ' + score;
+
+            // spawn
+            const interval = Math.max(60, 100 - Math.floor(score / 200) * 5);
+            if (frameCount % interval === 0) spawnObstacle();
+
+            // physics
+            player.vy += GRAVITY;
+            player.y += player.vy;
+            if (player.y >= GROUND - player.h) {
+                player.y = GROUND - player.h;
+                player.vy = 0;
+                player.onGround = true;
+            }
+
+            // move obstacles
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                obstacles[i].x -= speed;
+                if (obstacles[i].x + obstacles[i].w < 0) obstacles.splice(i, 1);
+            }
+
+            // collision
+            for (const obs of obstacles) {
+                if (player.x + player.w - 4 > obs.x + 2 &&
+                    player.x + 4 < obs.x + obs.w - 2 &&
+                    player.y + player.h - 2 > obs.y) {
+                    gameOver = true;
+                    drawGameOver();
+                    return;
+                }
+            }
+
+            // draw
+            drawBackground();
+            ctx.fillStyle = '#222';
+            ctx.fillRect(0, GROUND, canvas.width, 2);
+            drawPlayer();
+            ctx.fillStyle = '#555';
+            for (const obs of obstacles) ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
+        }
+
+        function drawGameOver() {
+            ctx.fillStyle = 'rgba(0,0,0,0.4)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 18px Andale Mono, AndaleMono, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('YOU SUCK!CRY ABOUT IT', canvas.width / 2, canvas.height / 2);
+            ctx.textAlign = 'left';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowUp') {
+                e.preventDefault();
+                jump();
+            }
+        });
+
+        canvas.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            jump();
+        }, { passive: false });
+
+        document.getElementById('toggleGameBtn').addEventListener('click', function() {
+            const gw = document.getElementById('gameWrapper');
+            const visible = gw.style.display !== 'none';
+            gw.style.display = visible ? 'none' : 'block';
+            if (!visible) init();
+        });
+
+        init();
+    })();
+    </script>
+</body>
+</html>
