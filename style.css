@@ -1,0 +1,212 @@
+* {
+    font-family: 'Andale Mono', 'AndaleMono', monospace;
+}
+
+body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    min-height: 130vh;
+    padding-bottom: 80px;
+    position: relative;
+    background-image: url('assets/site-background.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#titleWrapper {
+    padding: 0;
+    position: relative;
+    margin-top: -90px;
+}
+
+#playButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transform: translateY(-10px);
+}
+
+#playButton img {
+    max-width: 300px;
+    height: auto;
+}
+
+#skipBtn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transform: translateY(-10px);
+}
+
+#skipBtn img {
+    max-width: 220px;
+    height: auto;
+}
+
+#submitBtn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+#submitBtn img {
+    max-width: 220px;
+    height: auto;
+}
+
+#titleImg {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#titleFallback {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    display: none;
+}
+
+#subtitle {
+    font-family: 'Andale Mono', 'AndaleMono', monospace;
+    font-size: 1.2rem;
+    color: #666;
+    margin: 10px 0;
+}
+
+#moreBtn {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 20;
+}
+
+#moreBtn img {
+    max-width: 150px;
+    height: auto;
+}
+
+#more {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    text-align: left;
+    background-color: white;
+    background-image: url('assets/more-background.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 430px;
+    min-height: 380px;
+    z-index: 10;
+}
+
+#player {
+    margin-bottom: 10px;
+}
+
+#questionnaire {
+    margin-top: 10px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 12px;
+}
+
+#questionnaire form {
+    display: block;
+    width: min(92vw, 460px);
+    margin: 0 auto;
+    text-align: left;
+}
+
+#toggleGameBtn {
+    background: none;
+    border: none;
+    font-size: 0.95rem;
+    color: #444;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 6px 0;
+    padding: 0;
+}
+
+#toggleGameBtn:hover {
+    color: #000;
+}
+
+#gameWrapper {
+    margin: 10px auto;
+    display: inline-block;
+    text-align: center;
+}
+
+#gameCanvas {
+    display: block;
+    border: 2px solid #222;
+    border-radius: 4px;
+    background-image: url('assets/minigame-background.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+}
+
+#gameScore {
+    font-size: 0.9rem;
+    color: #444;
+    margin: 4px 0 0;
+}
+
+#gameHint {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0 0 4px;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
